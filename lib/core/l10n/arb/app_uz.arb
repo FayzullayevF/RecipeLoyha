@@ -1,0 +1,18 @@
+{
+  "signUp": "Ro'yxatdan o'tish",
+  "firstName": "Ism",
+  "lastName": "Familiya",
+  "username": "Foydalanuvchi nomi",
+  "email": "Email",
+  "mobileNumber": "Telefon raqam",
+  "dateOfBirth": "Tug'ilgan sana",
+  "password": "Kod",
+  "confirmPassword": "Kodni tasdiqlash",
+  "signUpDesc": "Davom etish orqali siz rozisiz",
+  "signUpTerms": "Terms of Use and Privacy Police",
+  "signUpAlready": "Allaqachon mavjud akkaunt? Login",
+  "login":  "Kirish",
+  "forgetPassword": "Parolni unutdinzgizmi",
+  "signUpWith": "Yoki bular orqali ro'yxatdan o'ting",
+  "noAccount": "Akkaunt yo'qmi? Ro'yxatdan o'tish"
+}
