@@ -1,4 +1,5 @@
 import 'package:chef_staff/core/presentations/bottom_navigation_bar.dart';
+import 'package:chef_staff/core/presentations/recipe_app_bar.dart';
 import 'package:chef_staff/core/utils/utils.dart';
 import 'package:chef_staff/reviews/presentation/manager/reviews/recipe_review_bloc.dart';
 import 'package:chef_staff/reviews/presentation/widgets/recipe_review_comments_item.dart';
@@ -16,21 +17,7 @@ class ReviewView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 36),
-          child: SvgPicture.asset("assets/icons/back-arrow.svg"),
-        ),
-        title: Text(
-          "Review",
-          style: TextStyle(
-            color: AppColors.nameColor,
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-            fontFamily: "Poppins",
-          ),
-        ),
-      ),
+      appBar: RecipeAppBar(title: "Review", actions: null),
       extendBody: true,
       body: BlocBuilder<RecipeReviewBloc, ReviewsState>(
           builder: (context, state) {
@@ -51,9 +38,9 @@ class ReviewView extends StatelessWidget {
                 ),
                 Expanded(
                   child: ListView.builder(
-                    itemCount: state.recipeComments!.length,
+                    itemCount: state.reviews.length,
                     itemBuilder: (context, index) {
-                      final comments = state.recipeComments![index];
+                      final comments = state.reviews[index];
                       return RecipeReviewCommentsItem(
                           profileImage: comments.user.profilePhoto,
                           comment: comments.comment,

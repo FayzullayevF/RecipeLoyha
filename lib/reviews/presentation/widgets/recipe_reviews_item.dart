@@ -4,7 +4,9 @@ import 'package:chef_staff/reviews/presentation/widgets/recipe_reviews_user.dart
 import 'package:chef_staff/reviews/presentation/widgets/recipe_text_button_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../core/routing/routes.dart';
 import '../../../core/utils/utils.dart';
 import '../../../data/models/recipe_review_model.dart';
 class ReviewsRecipeItem extends StatelessWidget {
@@ -62,7 +64,7 @@ class ReviewsRecipeItem extends StatelessWidget {
                 containerWidth: 126.w,
                 containerHeight: 24.h,
                 containerPaddingH: 10,
-                callback: () {},
+                callback: () => context.push(Routes.getCreateReview(recipe.id)),
               ),
             ],
           ),

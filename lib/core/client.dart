@@ -1,13 +1,14 @@
+import 'dart:developer';
 import 'dart:io';
-import 'dart:math';
 
+import 'package:chef_staff/data/models/create_review_model.dart';
 import 'package:chef_staff/data/models/user_model.dart';
 import 'package:chef_staff/core/exceptions/auth_exceptions.dart';
 import 'package:dio/dio.dart';
 
 class ApiClient {
   final Dio dio = Dio(BaseOptions(
-      baseUrl: "http://192.168.10.32:8888/api/v1",
+      baseUrl: "http://10.10.0.76:8888/api/v1",
       validateStatus: (status) => true));
 
   Future<Map<String, dynamic>> fetchUser() async {
@@ -69,10 +70,10 @@ class ApiClient {
     return response.statusCode == 201 ? true : false;
   }
 
-  Future<Map<String,dynamic>> fetchRecipeById(int recipeId) async {
+  Future<Map<String, dynamic>> fetchRecipeById(int recipeId) async {
     var response = await dio.get('/recipes/detail/$recipeId');
     if (response.statusCode == 200) {
-      return response.data as Map<String,dynamic>;
+      return response.data as Map<String, dynamic>;
     } else {
       throw Exception("$recipeId is not come from backend");
     }
@@ -125,32 +126,62 @@ class ApiClient {
     }
   }
 
-  Future<List<dynamic>> fetchCommunity({required String? order, bool? descending })async{
-    var response = await dio.get('/recipes/community/list?Order=$order&Descending=$descending');
-    if(response.statusCode == 200){
+  Future<List<dynamic>> fetchCommunity({required String? order, bool? descending}) async {
+    var response = await dio
+        .get('/recipes/community/list?Order=$order&Descending=$descending');
+    if (response.statusCode == 200) {
       List<dynamic> data = response.data;
       return data;
-    }else{
+    } else {
       throw Exception("Community did not come");
     }
   }
 
-  Future<Map<String,dynamic>> fetchRecipeReview(int recipeId)async{
+  Future<Map<String, dynamic>> fetchRecipeReview(int recipeId) async {
     var response = await dio.get("/recipes/reviews/detail/$recipeId");
-    if (response.statusCode == 200){
+    if (response.statusCode == 200) {
       Map<String, dynamic> data = response.data;
       return data;
-    }else{
+    } else {
       throw Exception("Review did not come");
     }
   }
 
-  Future<List<dynamic>> fetchRecipeReviewsComment(int recipeId)async{
-    var response = await dio.get('/reviews/list?recipe=$recipeId');
-    if(response.statusCode == 200){
+  Future<List<dynamic>> fetchRecipeForReviews(int recipeId) async {
+    var response = await dio.get('/recipes/reviews/detail/$recipeId');
+    if (response.statusCode == 200) {
       return response.data;
-    }else{
+    } else {
       throw Exception("Recipe Review did not come");
     }
   }
+
+  Future<bool> createReview(CreateReviewModel model) async {
+      final  formData = FormData.fromMap(await model.toJson());
+      final response = await dio.post(
+        '/reviews/create',
+        data: formData,
+        options: Options(
+          headers: {
+            "Authorization":
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuZHJld0BnbWFpbC5jb20iLCJqdGkiOiI5ZDA3YzY0Zi04NDRiLTRkMGEtYWI3Ni1mMmQ0MzI5ZGEwZjciLCJ1c2VyaWQiOiIxIiwiZXhwIjoxODM2OTk3OTkzLCJpc3MiOiJsb2NhbGhvc3QiLCJhdWQiOiJhdWRpZW5jZSJ9.xLiy_DgXpSVN5oBnzK0FSxO8pGTLU8GRoZ14qDwy4gk",
+          },
+        ),
+      );
+      if (response.statusCode == 201) {
+        return true;
+      }  else {
+        return false;
+      }
+  }
+  Future<T> genericGetRequest<T>(String path,{Map<String, dynamic>? queryParams}) async{
+      var response = await dio.get(path, queryParameters: queryParams);
+      log("message ${response.statusCode}");
+      if(response.statusCode == 200){
+        return response.data as T;
+      }else{
+        throw DioException(requestOptions: response.requestOptions, response: response);
+      }
+  }
+
 }

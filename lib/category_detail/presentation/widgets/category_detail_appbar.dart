@@ -2,6 +2,7 @@ import 'package:chef_staff/core/presentations/app_bar_actions.dart';
 import 'package:chef_staff/core/presentations/recipe_icon_button.dart';
 import 'package:chef_staff/core/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RecipeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const RecipeAppBar({
@@ -37,8 +38,7 @@ class RecipeAppBar extends StatelessWidget implements PreferredSizeWidget {
             alignment: Alignment.centerLeft,
             child: RecipeIconButton(
               image: "assets/icons/back-arrow.svg",
-              width: 25,
-              height: 17,
+             size: Size(25.w, 17.h),
               callback: backButtonCallBack,
             )),
         centerTitle: true,

@@ -1,36 +1,29 @@
-import 'package:chef_staff/core/presentations/recipe_svg_image.dart';
-import 'package:chef_staff/core/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class RecipeIconButton extends StatelessWidget {
   const RecipeIconButton({
     super.key,
-    this.alignment = Alignment.center,
-    this.color = AppColors.nameColor,
     required this.image,
-    required this.width,
-    required this.height,
     required this.callback,
+    this.size = const Size(28, 28),
   });
 
   final String image;
-  final Alignment alignment;
-  final Color color;
-  final double width, height;
-
+  final Size size;
   final VoidCallback callback;
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      padding: EdgeInsets.zero,
-      onPressed: callback,
-      icon: RecipeSvgImage(
-        image: image,
-        width: width,
-        height: height,
-        color: color,
-        alignment: alignment,
+    return SizedBox.fromSize(
+      size: size,
+      child: IconButton(
+        style: IconButton.styleFrom(
+          tapTargetSize: MaterialTapTargetSize.padded,
+        ),
+        onPressed: callback,
+        padding: EdgeInsets.zero,
+        icon: SvgPicture.asset(image),
       ),
     );
   }

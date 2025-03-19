@@ -1,4 +1,4 @@
-import 'package:chef_staff/data/models/recipe_reviews_comment_model.dart';
+import 'package:chef_staff/data/models/review_user_model.dart';
 
 class RecipeReviewCommentsModel {
   final int id;

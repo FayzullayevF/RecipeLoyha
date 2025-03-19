@@ -1,4 +1,5 @@
 import 'package:chef_staff/data/repository/categories_repository.dart';
+import 'package:chef_staff/data/repository/create_review_repository.dart';
 import 'package:chef_staff/data/repository/recipe_repository.dart';
 import 'package:chef_staff/core/client.dart';
 import 'package:chef_staff/core/presentations/localization_view_model.dart';
@@ -6,6 +7,7 @@ import 'package:chef_staff/core/routing/router.dart';
 import 'package:chef_staff/core/sizes.dart';
 import 'package:chef_staff/core/utils/themes.dart';
 import 'package:chef_staff/data/repository/recipe_comunity_repository.dart';
+import 'package:chef_staff/data/repository/review_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -50,6 +52,16 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => LocalizationViewModel(),
+        ),
+        Provider(
+          create: (context) => CreateReviewRepository(
+            client: context.read(),
+          ),
+        ),
+        Provider(
+          create: (context) => ReviewRepository(
+            client: context.read(),
+          ),
         ),
       ],
       builder: (context, child) => MaterialApp.router(

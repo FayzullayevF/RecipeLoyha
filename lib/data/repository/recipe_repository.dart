@@ -1,4 +1,5 @@
 
+import 'package:chef_staff/data/models/recipe_create_review_model.dart';
 import 'package:chef_staff/data/models/recipe_model.dart';
 import 'package:chef_staff/core/client.dart';
 import 'package:chef_staff/data/models/recipe_review_comments_model.dart';
@@ -36,9 +37,8 @@ class RecipeRepository {
     return reviewsRecipe!;
   }
 
-  Future<List<RecipeReviewCommentsModel>> fetchRecipeReviewComments(int recipeId) async {
-    var rawComments = await client.fetchRecipeReviewsComment(recipeId);
-    recipeComments = rawComments.map((e)=> RecipeReviewCommentsModel.fromJson(e)).toList();
-    return recipeComments;
+  Future<RecipeCreateReviewModel> fetchRecipeForCreateReview(int recipeId) async {
+    var rawRecipe = await client.genericGetRequest<dynamic>('/recipes/create-review/$recipeId');
+    return RecipeCreateReviewModel.fromJson(rawRecipe);
   }
 }

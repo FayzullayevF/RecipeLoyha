@@ -1,12 +1,14 @@
 import 'package:chef_staff/core/client.dart';
 import 'package:chef_staff/core/routing/routes.dart';
 import 'package:chef_staff/data/repository/recipe_comunity_repository.dart';
+import 'package:chef_staff/home_page/presentations/pages/home_page_view.dart';
 import 'package:chef_staff/recipe_comunity/presentation/manager/recipe_comunity_view_model.dart';
 import 'package:chef_staff/recipe_comunity/presentation/pages/recipe_comunity_view.dart';
 import 'package:chef_staff/reviews/presentation/manager/create_review/create_review_bloc.dart';
 import 'package:chef_staff/reviews/presentation/manager/reviews/recipe_review_bloc.dart';
 import 'package:chef_staff/reviews/presentation/pages/create_review_view.dart';
 import 'package:chef_staff/reviews/presentation/pages/review_view.dart';
+import 'package:chef_staff/top_cheffs/presentation/pages/top_chefs_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +26,7 @@ import '../../recipe_detail/presentation/pages/recipe_detail_view.dart';
 
 final GoRouter router = GoRouter(
     navigatorKey: navigatorKey,
-initialLocation: Routes.createReview,
+    initialLocation: Routes.getCreateReview(2),
     routes: [
 //       GoRoute(
 //         path: "/onboarding_last",
@@ -102,7 +104,8 @@ initialLocation: Routes.createReview,
         path: Routes.review,
         builder: (context, state) => BlocProvider(
           create: (context) => RecipeReviewBloc(
-            repo: context.read(),
+            recipeRepo: context.read(),
+            reviewRepo: context.read(),
             recipeId: int.parse(state.pathParameters['recipeId']!),
           ),
           child: ReviewView(),
@@ -111,8 +114,22 @@ initialLocation: Routes.createReview,
       GoRoute(
         path: Routes.createReview,
         builder: (context, state) => BlocProvider(
-          create: (context) => CreateReviewBloc(),
+          create: (context) => CreateReviewBloc(
+              recipeRepo: context.read(), reviewRepo: context.read())
+            ..add(
+              CreateReviewLoading(
+                recipeId: int.parse(state.pathParameters['recipeId']!),
+              ),
+            ),
           child: CreateReviewView(),
         ),
-      )
+      ),
+      GoRoute(
+        path: Routes.home,
+        builder: (context, state) => HomePageView(),
+      ),
+      GoRoute(
+        path: Routes.topChef,
+        builder: (context, state) => TopChefsView(),
+      ),
     ]);

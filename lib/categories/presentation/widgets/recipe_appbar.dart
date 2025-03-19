@@ -4,6 +4,7 @@ import 'package:chef_staff/core/sizes.dart';
 import 'package:chef_staff/core/utils/styles.dart';
 import 'package:chef_staff/core/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class RecipeAppbar extends StatelessWidget implements PreferredSizeWidget {
@@ -27,8 +28,7 @@ class RecipeAppbar extends StatelessWidget implements PreferredSizeWidget {
         leading: RecipeIconButton(
           callback: context.pop,
           image: "assets/icons/back-arrow.svg",
-          width: 30,
-          height: 14,
+          size: Size(25.w, 17.h),
         ),
         centerTitle: true,
         title: Text(
