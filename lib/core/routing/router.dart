@@ -8,6 +8,7 @@ import 'package:chef_staff/reviews/presentation/manager/create_review/create_rev
 import 'package:chef_staff/reviews/presentation/manager/reviews/recipe_review_bloc.dart';
 import 'package:chef_staff/reviews/presentation/pages/create_review_view.dart';
 import 'package:chef_staff/reviews/presentation/pages/review_view.dart';
+import 'package:chef_staff/top_cheffs/presentation/pages/chef_profile.dart';
 import 'package:chef_staff/top_cheffs/presentation/pages/top_chefs_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -25,7 +26,7 @@ import '../../recipe_detail/presentation/manager/recipe_detail_view_model.dart';
 import '../../recipe_detail/presentation/pages/recipe_detail_view.dart';
 final GoRouter router = GoRouter(
     navigatorKey: navigatorKey,
-    initialLocation: Routes.topChef,
+    initialLocation: Routes.chefProfile,
     routes: [
 //       GoRoute(
 //         path: "/onboarding_last",
@@ -130,5 +131,9 @@ final GoRouter router = GoRouter(
       GoRoute(
         path: Routes.topChef,
         builder: (context, state) => TopChefsView(),
+      ),
+      GoRoute(
+        path: Routes.chefProfile,
+        builder: (context, state) => ChefProfile(),
       ),
     ]);

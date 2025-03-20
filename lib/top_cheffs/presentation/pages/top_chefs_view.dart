@@ -22,11 +22,11 @@ class TopChefsView extends StatelessWidget {
           Row(
             spacing: 5,
             children: [
-              RecipeAppBarActionContainer(
+              RecipeAppBarActionContainers(
                   containerColor: AppColors.actionContainerColor,
                   svgColor: AppColors.nameColor,
                   svg: "assets/icons/notification.svg"),
-              RecipeAppBarActionContainer(
+              RecipeAppBarActionContainers(
                   containerColor: AppColors.actionContainerColor,
                   svgColor: AppColors.nameColor,
                   svg: "assets/icons/search.svg"),

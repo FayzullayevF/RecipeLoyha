@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class RecipeAppBarActionContainer extends StatelessWidget {
-  const RecipeAppBarActionContainer({
+class RecipeAppBarActionContainers extends StatelessWidget {
+  const RecipeAppBarActionContainers({
     super.key,
     required this.containerColor,
     required this.svgColor,
