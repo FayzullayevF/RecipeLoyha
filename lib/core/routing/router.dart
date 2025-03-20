@@ -23,10 +23,9 @@ import '../../category_detail/presentation/pages/category_detail_view.dart';
 import '../../main.dart';
 import '../../recipe_detail/presentation/manager/recipe_detail_view_model.dart';
 import '../../recipe_detail/presentation/pages/recipe_detail_view.dart';
-
 final GoRouter router = GoRouter(
     navigatorKey: navigatorKey,
-    initialLocation: Routes.getCreateReview(2),
+    initialLocation: Routes.topChef,
     routes: [
 //       GoRoute(
 //         path: "/onboarding_last",

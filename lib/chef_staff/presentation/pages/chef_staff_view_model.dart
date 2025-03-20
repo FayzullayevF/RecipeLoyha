@@ -9,7 +9,7 @@ class ChefStaffViewModel extends ChangeNotifier {
     load();
   }
 
-  ChefStuffModel? model;
+  ChefRepository? model;
    List<RecipeModel>? recipeModel;
   final ChefStaffRepository _repo;
   bool loading = false;

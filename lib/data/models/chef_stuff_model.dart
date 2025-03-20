@@ -1,10 +1,10 @@
-class ChefStuffModel {
+class ChefRepository {
   final int id;
   final String fullName, username, bio;
   final String profilePhoto;
   final int recipes, following, followers;
 
-  ChefStuffModel({
+  ChefRepository({
     required this.id,
     required this.fullName,
     required this.username,
@@ -15,8 +15,8 @@ class ChefStuffModel {
     required this.followers,
   });
 
-  factory ChefStuffModel.fromJson(Map<String, dynamic> json) {
-    return ChefStuffModel(
+  factory ChefRepository.fromJson(Map<String, dynamic> json) {
+    return ChefRepository(
       id: json['id'],
       fullName: json['fullName'],
       username: json['username'],

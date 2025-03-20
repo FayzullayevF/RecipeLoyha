@@ -1,8 +1,13 @@
+import 'package:chef_staff/core/presentations/bottom_navigation_bar.dart';
 import 'package:chef_staff/core/presentations/recipe_app_bar.dart';
 import 'package:chef_staff/core/presentations/recipe_app_bar_action_container.dart';
 import 'package:chef_staff/core/utils/utils.dart';
+import 'package:chef_staff/top_cheffs/presentation/manager/top_chef_state.dart';
+import 'package:chef_staff/top_cheffs/presentation/manager/top_chefs_bloc.dart';
 import 'package:chef_staff/top_cheffs/presentation/widgets/top_chef_texts.dart';
+import 'package:chef_staff/top_cheffs/presentation/widgets/top_chefs_most_viewd_chefs.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TopChefsView extends StatelessWidget {
@@ -10,7 +15,9 @@ class TopChefsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BlocBuilder<ChefsBloc, ChefsState>(
+      builder: (context, state) => Scaffold(
+        extendBody: true,
         appBar: RecipeAppBar(title: "Top Chef", actions: [
           Row(
             spacing: 5,
@@ -27,55 +34,51 @@ class TopChefsView extends StatelessWidget {
           )
         ]),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Stack(
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: 285.h,
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 36.w, vertical: 9.h),
-                  decoration: BoxDecoration(
-                    color: AppColors.nameColor,
-                    borderRadius: BorderRadius.circular(20),
+            Container(
+              width: double.infinity,
+              height: 285.h,
+              padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 9.h),
+              decoration: BoxDecoration(
+                color: AppColors.nameColor,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TopChefTexts(
+                      text: "Most Viewed Chefs", textColor: Colors.white),
+                  SizedBox(
+                    height: 10,
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TopChefTexts(
-                          text: "Most Viewed Chef", textColor: Colors.white),
-                      SizedBox(height: 6),
-                      Stack(
-                          children: [
-                        Positioned(
-                          child: Container(
-                            width: 160.w,
-                            height: 76.h,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.only(
-                                  bottomRight: Radius.circular(10),
-                                  bottomLeft: Radius.circular(10)),
-                            ),
-                          ),
-                        ),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(14),
-                          child: Image(
-                            image: AssetImage(
-                              "assets/images/review.png",
-                            ),
-                            width: 170.w,
-                            height: 153.h,
-                          ),
-                        )
-                      ])
-                    ],
-                  ),
-                ),
-              ],
-            )
+                  TopChefsMostViewedChefs(),
+                ],
+              ),
+            ),
+            SizedBox(height: 15.h),
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.only(left: 36),
+                children: [
+                  TopChefTexts(text: "Most Liked Chefs", textColor: AppColors.nameColor),
+                  SizedBox(height: 5,),
+                  Row(mainAxisAlignment: MainAxisAlignment.start,children: [
+                    TopChefsMostViewedChefs(),
+                  ],),
+                  SizedBox(height: 75.h,),
+                  TopChefTexts(text: "New Chefs", textColor: AppColors.nameColor),
+                  SizedBox(height: 5,),
+                  Row(mainAxisAlignment: MainAxisAlignment.start,children: [
+                    TopChefsMostViewedChefs(),
+                  ],),
+                ],
+              ),
+            ),
           ],
-        ));
+        ),
+        bottomNavigationBar: RecipeBottomNavigationBar(),
+      ),
+    );
   }
 }

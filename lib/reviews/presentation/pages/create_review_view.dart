@@ -40,7 +40,7 @@ class CreateReviewView extends StatelessWidget {
                       backgroundColor: Colors.white,
                       child: Container(
                         width: 276.w,
-                        height: 371.h,
+                        height: 359.h,
                         padding: EdgeInsets.symmetric(
                             horizontal: 36.w, vertical: 36.h),
                         child: Column(
@@ -73,7 +73,7 @@ class CreateReviewView extends StatelessWidget {
                               text: "Go Back",
                               textColor: Colors.white,
                               containerColor: AppColors.nameColor,
-                              containerHeight: 45.h,
+                              containerHeight: 32.h,
                               containerWidth: 207.w,
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
