@@ -12,6 +12,7 @@ import 'package:chef_staff/data/repository/recipe_comunity_repository.dart';
 import 'package:chef_staff/data/repository/review_repository.dart';
 import 'package:chef_staff/top_cheffs/presentation/manager/top_chefs_bloc.dart';
 import 'package:chef_staff/top_cheffs/presentation/pages/top_chefs_view.dart';
+import 'package:chef_staff/trending_recipes/presentation/manager/trending_recipes_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -76,6 +77,11 @@ class MyApp extends StatelessWidget {
         BlocProvider<ChefsBloc>(
           create: (context) => ChefsBloc(
             chefRepo: context.read<ChefStaffRepository>(),
+          ),
+        ),
+        BlocProvider<TrendingRecipeBloc>(
+          create: (context) => TrendingRecipeBloc(
+            trendingRecipe: context.read<RecipeRepository>(),
           ),
         ),
       ],

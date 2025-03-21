@@ -47,7 +47,7 @@ class TopChefsView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TopChefTexts(
+                  RecipeMostViewedText(
                       text: "Most Viewed Chefs", textColor: Colors.white),
                   SizedBox(
                     height: 10,
@@ -61,13 +61,13 @@ class TopChefsView extends StatelessWidget {
               child: ListView(
                 padding: EdgeInsets.only(left: 36),
                 children: [
-                  TopChefTexts(text: "Most Liked Chefs", textColor: AppColors.nameColor),
+                  RecipeMostViewedText(text: "Most Liked Chefs", textColor: AppColors.nameColor),
                   SizedBox(height: 5,),
                   Row(mainAxisAlignment: MainAxisAlignment.start,children: [
                     TopChefsMostViewedChefs(),
                   ],),
                   SizedBox(height: 75.h,),
-                  TopChefTexts(text: "New Chefs", textColor: AppColors.nameColor),
+                  RecipeMostViewedText(text: "New Chefs", textColor: AppColors.nameColor),
                   SizedBox(height: 5,),
                   Row(mainAxisAlignment: MainAxisAlignment.start,children: [
                     TopChefsMostViewedChefs(),

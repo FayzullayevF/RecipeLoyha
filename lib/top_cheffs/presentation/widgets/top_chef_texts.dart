@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TopChefTexts extends StatelessWidget {
-  const TopChefTexts({super.key, required this.text, required this.textColor});
+class RecipeMostViewedText extends StatelessWidget {
+  const RecipeMostViewedText({super.key, required this.text, required this.textColor});
 
   final String text;
   final Color textColor;
